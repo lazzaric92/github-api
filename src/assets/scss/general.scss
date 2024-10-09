@@ -1,0 +1,7 @@
+@use './partials/variables' as *;
+@use './partials/mixins' as *;
+
+body {
+    background-color: #131313;
+    color: white;
+}
