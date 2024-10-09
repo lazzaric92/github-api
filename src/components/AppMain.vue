@@ -1,15 +1,23 @@
 <script>
+import { store } from '../store.js';
+
 export default{
     data(){
         return {
-            message: 'Main'
+            store
         }
     }
 }
 </script>
 
 <template>
-    <h1> {{ message }} </h1>
+    <main class="p-3">
+        <ul class="list-unstyled">
+            <li v-for="item in this.store.resultsArray" :key="item.id">
+                {{ item.full_name }}
+            </li>
+        </ul>
+    </main>
 </template>
 
 <style scoped lang="scss">

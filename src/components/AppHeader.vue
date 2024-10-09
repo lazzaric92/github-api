@@ -14,9 +14,7 @@ export default{
 
 <template>
     <header class="text-center p-3 mb-4">
-        <nav class="d-flex justify-content-center">
-            <AppSearch />
-        </nav>
+        <AppSearch />
     </header>
 </template>
 
