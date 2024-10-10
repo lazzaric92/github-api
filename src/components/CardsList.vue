@@ -1,7 +1,6 @@
 <script>
 import { store } from '../store.js';
 import SingleCard from './SingleCard.vue';
-import CardsList from './CardsList.vue';
 
 export default{
     data(){
@@ -10,16 +9,15 @@ export default{
         }
     },
     components: {
-        SingleCard,
-        CardsList
+        SingleCard
     }
 }
 </script>
 
 <template>
-    <main class="container py-3">
-        <CardsList />
-    </main>
+    <div class="row justify-content-between">
+        <SingleCard v-for="item in this.store.resultsArray" :key="item.id" :item="item"/>
+    </div>
 </template>
 
 <style scoped lang="scss">
