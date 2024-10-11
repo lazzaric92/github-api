@@ -11,7 +11,7 @@ export default{
     },
     methods: {
         getSearchedItems: function(searchString, page){
-            if(this.search.trim() != ''){
+            if(this.search.trim().length >= 3){
                 axios.get(`https://api.github.com/search/${this.store.searchSelect}`, {
                     params: {
                         q: searchString,
@@ -46,10 +46,25 @@ export default{
             <option value="users">Users</option>
         </select>
         <input type="search" v-model="search" class="mx-2 ps-2" placeholder="Search">
-        <button class="btn btn-success" @click="[this.store.reposArray = [], this.store.usersArray = [], getSearchedItems(search, 1)]">Search</button>
+        <button class="btn green-btn" @click="[this.store.reposArray = [], this.store.usersArray = [], getSearchedItems(search, 1)]">Search</button>
     </nav>
 </template>
 
 <style scoped lang="scss">
+.green-btn {
+    background-color: #2db72d;
+    
+    &:hover {
+        background-color: #5bd65b;
+        color: black;
+    }
+
+    &:focus,
+    &:active {
+        background-color: #5bd65b;
+        color: black;
+    }
+}
+
 
 </style>
