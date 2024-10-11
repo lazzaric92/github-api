@@ -54,13 +54,16 @@ export default{
 </script>
 
 <template>
-    <nav class="d-flex justify-content-center">
-        <select class="text-center" v-model="this.store.searchSelect">
-            <option value="repositories" selected>Repositories</option>
-            <option value="users">Users</option>
-        </select>
-        <input type="search" v-model="search" class="mx-2 ps-2" placeholder="Search">
-        <button class="btn green-btn" @click="[this.store.reposArray = [], this.store.usersArray = [], getSearchedItems(search, 1)]">Search</button>
+    <nav class="d-flex flex-column justify-content-center">
+        <div class="d-flex justify-content-center mb-1">
+            <select class="text-center" v-model="this.store.searchSelect">
+                <option value="repositories" selected>Repositories</option>
+                <option value="users">Users</option>
+            </select>
+            <input type="search" v-model="search" class="mx-2 ps-2" placeholder="Search">
+            <button class="btn green-btn" @click="[this.store.reposArray = [], this.store.usersArray = [], getSearchedItems(search, 1)]">Search</button>
+        </div>
+        <p v-if="this.search.trim().length > 0 && this.search.trim().length < 3" class="text-danger">Inserire almeno tre caratteri per avviare la ricerca</p>
     </nav>
 </template>
 
@@ -80,5 +83,7 @@ export default{
     }
 }
 
-
+nav > p {
+    font-size: .8rem;
+}
 </style>
