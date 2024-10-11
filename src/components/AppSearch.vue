@@ -7,11 +7,12 @@ export default{
             store,
             search: '',
             currentPage: 1,
+            order: 'desc',
         }
     },
     methods: {
         getSearchedItems: function(searchString, page){
-            if(this.search.trim().length >= 3){
+            if(this.search.trim() != '' && this.search.trim().length >= 3){
                 axios.get(`https://api.github.com/search/${this.store.searchSelect}`, {
                     params: {
                         q: searchString,

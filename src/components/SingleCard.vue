@@ -4,13 +4,37 @@ import { store } from '../store.js';
 export default{
     data(){
         return {
-            store
+            store,
+            wordsCount: 15,
         }
     },
     props: {
         item : {
             typeof: Object,
             required: true,
+        }
+    },
+    methods: {
+        descriptionPreview(text){
+            if(text.length > 0){
+                const words = text.split(' ');
+                let preview = '';
+                for(let i = 0; i < this.wordsCount; i++){
+                    if(i === this.wordsCount - 1){
+                        preview += words[i] + '...';
+                    } else if(i === words.length - 1){
+                        preview += words[i];
+                        // console.log(preview);
+                        return preview;
+                    } else {
+                        preview += words[i] + ' ';
+                    }
+                }
+            } else {
+                preview = '-';
+            }
+            console.log(preview);
+            return preview;
         }
     }
 }
@@ -23,9 +47,9 @@ export default{
             <img v-if="this.store.usersArray.length > 0" :src="item.avatar_url" class="card-img-top" :alt="item.login">
         </div>
         <div class="card-body py-1 px-3">
-            <h6 v-if="this.store.reposArray.length > 0" class="card-title fw-bold">{{ item.full_name }}</h6>
-            <h6 v-if="this.store.usersArray.length > 0" class="card-title fw-bold">{{ item.login }}</h6>
-            <p v-if="this.store.reposArray.length > 0" class="card-text">{{ item.description }}</p>
+            <h5 v-if="this.store.reposArray.length > 0" class="card-title fw-bold">{{ item.full_name }}</h5>
+            <h5 v-if="this.store.usersArray.length > 0" class="card-title fw-bold">{{ item.login }}</h5>
+            <p v-if="this.store.reposArray.length > 0" class="card-text" @click="[console.log(item.description.split(' ')), descriptionPreview(item.description)]">{{descriptionPreview(item.description)}}</p>
             <p v-if="this.store.reposArray.length > 0">Language: {{ item.language }}</p>
         </div>
         <ul class="list-unstyled px-3" v-if="this.store.reposArray.length > 0">
