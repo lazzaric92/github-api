@@ -7,7 +7,7 @@ export default{
             store,
             search: '',
             currentPage: 1,
-            sort: ''
+            sort: '',
         }
     },
     methods: {
@@ -15,13 +15,14 @@ export default{
             if(this.search.trim() != '' && this.search.trim().length >= 3){
                 this.setQuerySort();
                 this.store.isSearchOn = true;
+                this.store.isLoading = true;
+                this.loadingFunction();
                 axios.get(`https://api.github.com/search/${this.store.searchSelect}`, {
                     params: {
                         q: searchString,
                         page: page,
                         order: 'desc',
                         sort: this.sort
-                        
                     }
                 })
                 .then((response) => {
@@ -29,10 +30,10 @@ export default{
                     if(this.store.searchSelect === 'repositories'){
                         this.store.reposArray = response.data.items;
                         this.store.resultsArray = response.data.items;
-                        console.log(this.store.reposArray);
+                        // console.log(this.store.reposArray);
                     } else if (this.store.searchSelect === 'users'){
                         this.store.usersArray = response.data.items;
-                        console.log(this.store.usersArray);
+                        // console.log(this.store.usersArray);
                         this.store.resultsArray = response.data.items;
                     }
                 })
@@ -46,6 +47,13 @@ export default{
                 this.sort = 'stars';
             } else if (this.store.searchSelect === 'users'){
                 this.sort = 'repositories';
+            }
+        },
+        loadingFunction(){
+            if(this.store.isLoading === true){
+                setTimeout(() => {
+                    this.store.isLoading = false;
+                }, 2000);
             }
         }
     },
