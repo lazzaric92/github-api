@@ -7,7 +7,6 @@ export default{
             store,
             search: '',
             currentPage: 1,
-            order: 'desc',
         }
     },
     methods: {
@@ -17,6 +16,7 @@ export default{
                     params: {
                         q: searchString,
                         page: page,
+                        // order: 'desc',
                     }
                 })
                 .then((response) => {

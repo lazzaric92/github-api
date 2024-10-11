@@ -16,24 +16,27 @@ export default{
     },
     methods: {
         descriptionPreview(text){
-            if(text.length > 0){
-                const words = text.split(' ');
-                let preview = '';
+            let preview = '';
+            const words = text.split(' ');
+            if(words.length > this.wordsCount){
                 for(let i = 0; i < this.wordsCount; i++){
                     if(i === this.wordsCount - 1){
                         preview += words[i] + '...';
                     } else if(i === words.length - 1){
                         preview += words[i];
-                        // console.log(preview);
-                        return preview;
                     } else {
                         preview += words[i] + ' ';
                     }
                 }
             } else {
-                preview = '-';
+                for(let i = 0; i < words.length; i++){
+                    if(i === words.length - 1){
+                        preview += words[i];
+                    } else {
+                        preview += words[i] + ' ';
+                    }
+                }
             }
-            console.log(preview);
             return preview;
         }
     }
@@ -41,7 +44,7 @@ export default{
 </script>
 
 <template>
-    <article class="card mb-2 p-0">
+    <article class="card mb-3 p-0">
         <div class="card-img d-flex justify-content-center align-items-center">
             <img v-if="this.store.reposArray.length > 0" :src="item.owner.avatar_url" class="card-img-top" :alt="item.owner.login">
             <img v-if="this.store.usersArray.length > 0" :src="item.avatar_url" class="card-img-top" :alt="item.login">
@@ -49,11 +52,15 @@ export default{
         <div class="card-body py-1 px-3">
             <h5 v-if="this.store.reposArray.length > 0" class="card-title fw-bold">{{ item.full_name }}</h5>
             <h5 v-if="this.store.usersArray.length > 0" class="card-title fw-bold">{{ item.login }}</h5>
-            <p v-if="this.store.reposArray.length > 0" class="card-text" @click="[console.log(item.description.split(' ')), descriptionPreview(item.description)]">{{descriptionPreview(item.description)}}</p>
-            <p v-if="this.store.reposArray.length > 0">Language: {{ item.language }}</p>
+            <p v-if="this.store.reposArray.length > 0" class="card-text">{{ (item.description !== null) ? descriptionPreview(item.description) : '-' }}</p>
         </div>
         <ul class="list-unstyled px-3" v-if="this.store.reposArray.length > 0">
-            <li><font-awesome-icon icon="fa-regular fa-eye" class="text-white me-1"/> {{ item.watchers }}</li>
+            <li>
+                <p v-if="this.store.reposArray.length > 0">Language: {{ item.language }}</p>
+            </li>
+            <li>
+                <font-awesome-icon icon="fa-regular fa-eye" class="text-white me-1"/> {{ item.watchers }}
+            </li>
         </ul>
         <hr>
         <div class="card-body mt-auto card-link">
