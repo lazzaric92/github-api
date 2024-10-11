@@ -1,17 +1,6 @@
 @use './partials/variables' as *;
 @use './partials/mixins' as *;
 
-// Font Awesome
-$fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/WebFonts" !default;
-@use '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import '../../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
-@import '../../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
-
-.fa,.fas,.far,.fal,.fab {
-    font-family: "Font Awesome 5 Free";
-}
-
 body {
     background-color: #131313;
     color: white;

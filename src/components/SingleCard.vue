@@ -29,14 +29,16 @@ export default{
             <p v-if="this.store.reposArray.length > 0">Language: {{ item.language }}</p>
         </div>
         <ul class="list-unstyled px-3" v-if="this.store.reposArray.length > 0">
-            <li>Watchers: {{ item.watchers }}</li>
+            <li><font-awesome-icon icon="fa-regular fa-eye" class="text-white me-1"/> {{ item.watchers }}</li>
         </ul>
         <hr>
-        <div class="card-body">
-            <p>
+        <div class="card-body mt-auto card-link">
+            <p class="mb-0">
                 <span v-if="this.store.reposArray.length > 0">Vai alla repo</span>
                 <span v-if="this.store.usersArray.length > 0">Visita il profilo</span>
-                <a :href="item.html_url" class="card-link text-decoration-none text-white">&rarr;</a>
+                <a :href="item.html_url" class="card-link text-decoration-none text-white">
+                    <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" class="text-white ms-2"/>
+                </a>
             </p>
         </div>
     </article>
@@ -59,6 +61,22 @@ export default{
                 aspect-ratio: 1;
                 border-radius: 50%;
             }
+        }
+
+        .card-text{
+            color: #989e98;
+            margin: 1.5rem 0;
+        }
+
+        hr {
+            border-color: #00ff00;
+            border-width: 2px;
+            border-style: outset;
+            margin-bottom: 0;
+        }
+
+        .card-link{
+            max-height: 56px;
         }
     }
 </style>
