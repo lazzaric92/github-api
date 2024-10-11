@@ -12,6 +12,9 @@ export default{
     components: {
         SingleCard,
         CardsList
+    },
+    created(){
+        this.store.isSearchOn = false;
     }
 }
 </script>

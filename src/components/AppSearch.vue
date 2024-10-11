@@ -14,6 +14,7 @@ export default{
         getSearchedItems: function(searchString, page){
             if(this.search.trim() != '' && this.search.trim().length >= 3){
                 this.setQuerySort();
+                this.store.isSearchOn = true;
                 axios.get(`https://api.github.com/search/${this.store.searchSelect}`, {
                     params: {
                         q: searchString,
@@ -36,7 +37,7 @@ export default{
                     }
                 })
                 .catch((error) => {
-                console.log(error);
+                    console.log(error);
                 });
             }
         },
