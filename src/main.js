@@ -12,9 +12,11 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faSquareGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 /* add icons to the library */
-library.add(faEye, faGithub, faSquareGithub, faArrowUpRightFromSquare)
+library.add(faEye, faGithub, faSquareGithub, faArrowUpRightFromSquare, faHeart, faStar)
 
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)

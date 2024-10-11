@@ -7,16 +7,20 @@ export default{
             store,
             search: '',
             currentPage: 1,
+            sort: ''
         }
     },
     methods: {
         getSearchedItems: function(searchString, page){
             if(this.search.trim() != '' && this.search.trim().length >= 3){
+                this.setQuerySort();
                 axios.get(`https://api.github.com/search/${this.store.searchSelect}`, {
                     params: {
                         q: searchString,
                         page: page,
-                        // order: 'desc',
+                        order: 'desc',
+                        sort: this.sort
+                        
                     }
                 })
                 .then((response) => {
@@ -35,8 +39,16 @@ export default{
                 console.log(error);
                 });
             }
+        },
+        setQuerySort(){
+            if(this.store.searchSelect === 'repositories'){
+                this.sort = 'stars';
+            } else if (this.store.searchSelect === 'users'){
+                this.sort = 'repositories';
+            }
         }
-    }
+    },
+
 }
 </script>
 

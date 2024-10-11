@@ -51,15 +51,27 @@ export default{
         </div>
         <div class="card-body py-1 px-3">
             <h5 v-if="this.store.reposArray.length > 0" class="card-title fw-bold">{{ item.full_name }}</h5>
-            <h5 v-if="this.store.usersArray.length > 0" class="card-title fw-bold">{{ item.login }}</h5>
+            <h5 v-if="this.store.usersArray.length > 0" class="card-title fw-bold" @click="console.log((item.repos_url).length)" >{{ item.login }}</h5>
             <p v-if="this.store.reposArray.length > 0" class="card-text">{{ (item.description !== null) ? descriptionPreview(item.description) : '-' }}</p>
         </div>
         <ul class="list-unstyled px-3" v-if="this.store.reposArray.length > 0">
             <li>
-                <p v-if="this.store.reposArray.length > 0">Language: {{ item.language }}</p>
+                <p>Language: {{ item.language }}</p>
             </li>
             <li>
+                <font-awesome-icon icon="fa-solid fa-star" class="text-white me-1"/> {{ item.stargazers_count }}
+                <!-- stargazers_count -->
+            </li>
+            <!-- <li>
                 <font-awesome-icon icon="fa-regular fa-eye" class="text-white me-1"/> {{ item.watchers }}
+            </li> -->
+        </ul>
+        <ul class="list-unstyled px-3" v-if="this.store.usersArray.length > 0">
+            <li>
+                <p class="mb-1 mt-2">Repos: {{ (item.repos_url).length }}</p>
+            </li>
+            <li>
+                <font-awesome-icon icon="fa-solid fa-heart" class="text-white me-1"/> {{ (item.followers_url).length }}
             </li>
         </ul>
         <hr>
