@@ -8,4 +8,5 @@ export const store = reactive({
     usersArray: [],
     resultsArray: [],
     isSearchOn: false,
+    isLoading: false,
 });
